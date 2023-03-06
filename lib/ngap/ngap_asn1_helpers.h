@@ -83,10 +83,15 @@ inline void fill_asn1_ng_setup_request(asn1::ngap::ng_setup_request_s& request,
   asn1::ngap::broadcast_plmn_item_s broadcast_plmn_item = {};
   broadcast_plmn_item.plmn_id.from_number(plmn_bcd);
 
-  asn1::ngap::slice_support_item_s slice_support_item = {};
-  slice_support_item.s_nssai.sst.from_number(1);
-  slice_support_item.s_nssai.sd.from_string("1");
-  broadcast_plmn_item.tai_slice_support_list.push_back(slice_support_item);
+  asn1::ngap::slice_support_item_s slice_support_item1 = {};
+  slice_support_item1.s_nssai.sst.from_number(1);
+  slice_support_item1.s_nssai.sd.from_string("000001");
+  broadcast_plmn_item.tai_slice_support_list.push_back(slice_support_item1);
+  
+  asn1::ngap::slice_support_item_s slice_support_item2 = {};
+  slice_support_item2.s_nssai.sst.from_number(222);
+  slice_support_item2.s_nssai.sd.from_string("00007b");
+  broadcast_plmn_item.tai_slice_support_list.push_back(slice_support_item2);
 
   supported_ta_item.broadcast_plmn_list.push_back(broadcast_plmn_item);
   supported_ta_item.tac.from_number(tac);
