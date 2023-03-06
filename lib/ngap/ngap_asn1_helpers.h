@@ -85,6 +85,7 @@ inline void fill_asn1_ng_setup_request(asn1::ngap::ng_setup_request_s& request,
 
   asn1::ngap::slice_support_item_s slice_support_item = {};
   slice_support_item.s_nssai.sst.from_number(1);
+  slice_support_item.s_nssai.sd.from_string("1");
   broadcast_plmn_item.tai_slice_support_list.push_back(slice_support_item);
 
   supported_ta_item.broadcast_plmn_list.push_back(broadcast_plmn_item);
