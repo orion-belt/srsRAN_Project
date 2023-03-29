@@ -5,7 +5,7 @@ ARG BASE_IMAGE=ubuntu:focal
 
 FROM $BASE_IMAGE as builder
 
-ARG UHD_VERSION=v4.3.0
+ARG UHD_VERSION=v4.3.0.0
 
 # Install dependencies for srsRAN and UHD build
 RUN apt update && \
@@ -76,6 +76,7 @@ COPY --from=builder /usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0
                     /usr/lib/x86_64-linux-gnu/libicudata.so.66 \
                     /usr/lib/x86_64-linux-gnu/libyaml-cpp.so.0.6 \ 
                     /usr/lib/x86_64-linux-gnu/libdl.so.2 \
+                    /usr/lib/x86_64-linux-gnu/libpython3.8.so.1.0 \
                     # /usr/local/lib/libsrsran_rf_zmq.so.0 \
                     /usr/lib/x86_64-linux-gnu/libfftw3f.so.3 /usr/lib/x86_64-linux-gnu/
 RUN ldconfig
