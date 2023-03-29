@@ -1,7 +1,7 @@
 ### Step 1. Build Docker Image ###
 
 ```bash
-docker build -f docker/Dockerfile --build-arg UHD_VERSION=v4.3.0 --target srsran --tag srsran:latest .
+docker build -f docker/Dockerfile --build-arg UHD_VERSION=v4.3.0.0 --target srsran --tag srsran:latest .
 ```
 
 ### Step 2. Launch Tester ###
