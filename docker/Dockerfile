@@ -2,9 +2,10 @@
 # BUILDER IMAGE
 #---------------------------------------------------------------------
 ARG BASE_IMAGE=ubuntu:focal
-ARG UHD_VERSION=4.3.0
 
 FROM $BASE_IMAGE as builder
+
+ARG UHD_VERSION=v4.3.0
 
 # Install dependencies for srsRAN and UHD build
 RUN apt update && \
@@ -28,7 +29,7 @@ RUN apt update && \
 
 # Build UHD driver
 RUN git clone https://github.com/EttusResearch/uhd.git ~/uhd && \
-    cd ~/uhd && git checkout v$UHD_VERSION.0 && cd host && mkdir build && \
+    cd ~/uhd && git checkout $UHD_VERSION && cd host && mkdir build && \
     cd build && cmake ../ && make -j $(nproc) && make install && ldconfig
 
 # COPY . /srsRAN # Build local source
@@ -54,7 +55,7 @@ RUN apt update && \
     iproute2 net-tools iputils-ping -y
 
 COPY --from=builder /usr/local/lib/libsrsran_* \
-                    /usr/local/lib/libuhd.so.$UHD_VERSION \
+                    /usr/local/lib/libuhd.so.* \
                     /usr/local/lib/
 
 # Copy shared libraries
